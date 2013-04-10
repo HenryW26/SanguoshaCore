@@ -10,6 +10,10 @@ def show_game_roles(player, roles):
         print(r.name)
 def get_user_input_role_select():
     return 1
+def get_user_input_react():
+    return 1
+def show_game_status():
+    print(42)
 
 game = Game()
 game.player_count = 5
@@ -36,14 +40,14 @@ for p in players:
 
 game.start(king) # 从主公开始出牌
 
-# while not game.is_end():
-#     player = game.current_player
-#     while true:
-#         react = get_user_input_react()
-#         show_game_status(game.status())
-#         if player.act(react):
-#             game.go_step()
-#             break
+while not game.is_end:
+    player = game.current_player
+    while true:
+        react = get_user_input_react()
+        show_game_status(game.status())
+        if player.act(react):
+            game.go_step()
+            break
 
 # # 游戏结束，显示结果
 # result = game.result()

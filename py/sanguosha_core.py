@@ -4,8 +4,13 @@
 class Game:
     """docstring for Game"""
     def __init__(self):
-        pass
-        # game init
+        # 回合内步骤
+        self.mo       = 1 # 摸牌之前
+        self.panding  = 2 # 判定闪电、乐不思蜀
+        self.panding1 = 3 # 
+        self.mo1      = 4 # 
+        self.chupai   = 5 # 出牌阶段
+        sefl.after    = 6 # 出牌结束
 
     # 游戏开始
     def init(self):
@@ -47,12 +52,25 @@ class Game:
     # 开始游戏
     def start(self, first_player):
         self.round_player = first_player # 当前回合是属于哪个玩家的
+        self.is_end = False
+        self.step = 'mo' # 游戏步骤
         self.go_step()
 
-    # 走一步 没当状态改变，就会自动停止
+    # 走一步 每当状态改变，就会自动停止
     # 然后等待调用者再次调用此方法
     def go_step(self):
-        pass
+        # 回合内步骤
+        {
+            'mo':       lambda: self.mo,       # 摸牌之前
+            'panding':  lambda: self.panding,  # 判定闪电、乐不思蜀
+            'panding1': lambda: self.panding1, # 
+            'mo1':      lambda: self.mo1,      # 
+            'chupai':   lambda: self.chupai,   # 出牌阶段
+            'after':    lambda: sefl.after    # 出牌结束
+        }[self.step]();
+
+    def status(self):
+        return {'step': self.step}
 
     # 返回游戏结果 胜利方
     def result():
@@ -68,7 +86,9 @@ class Player:
     """docstring for Player"""
     def __init__(self, index):
         self.index = index
-    def action(self):
+
+    # 根据用户输入行动
+    def act(self, react):
         pass
     def select_role(self, index):
         self.role = self.available_roles[index]
