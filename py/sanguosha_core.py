@@ -44,15 +44,15 @@ class Game:
             player.available_roles = [Role('guanyu') for i in range(3)]
         return player.available_roles
 
-    
-    def start(self):
+    # 开始游戏
+    def start(self, first_player):
+        self.round_player = first_player # 当前回合是属于哪个玩家的
+        self.go_step()
+
+    # 走一步 没当状态改变，就会自动停止
+    # 然后等待调用者再次调用此方法
+    def go_step(self):
         pass
-        # 身份
-        # 选将
-        # 选将
-        # 指定出牌人
-    def current_player(self):
-        return self.current_player
 
     # 返回游戏结果 胜利方
     def result():

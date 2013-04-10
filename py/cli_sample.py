@@ -34,10 +34,10 @@ for p in players:
     role_id = get_user_input_role_select()
     p.select_role(role_id)
 
-# game.start(king.player) # 从主公开始出牌
+game.start(king) # 从主公开始出牌
 
 # while not game.is_end():
-#     player = game.current_player()
+#     player = game.current_player
 #     while true:
 #         react = get_user_input_react()
 #         show_game_status(game.status())
