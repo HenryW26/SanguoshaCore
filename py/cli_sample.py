@@ -1,8 +1,10 @@
-# how to use this core pack?
+# show how to use this core pack
+# 一个简易的控制台版的三国杀
 
 from sanguosha_core import *
 
-def show_game_roles(roles):
+def show_game_roles(player, roles):
+    print('player', player.index, player.type)
     print('请在以下角色中选择')
     for r in roles:
         print(r.name)
@@ -18,7 +20,7 @@ game.init() # 洗牌 分配身份
 # 主公选将
 king = game.players('king')[0]
 roles = game.make_roles(king)
-show_game_roles(roles)
+show_game_roles(king, roles)
 
 role_id = get_user_input_role_select()
 
@@ -26,11 +28,11 @@ king.select_role(role_id)
 
 # 其他人选将
 players = game.players('other')
-for
-while player:
-    show_game_roles(player)
+for p in players:
+    roles = game.make_roles(p)
+    show_game_roles(p, roles)
     role_id = get_user_input_role_select()
-    player.player.role_selector = role_id
+    p.select_role(role_id)
 
 # game.start(king.player) # 从主公开始出牌
 
@@ -44,5 +46,5 @@ while player:
 #             break
 
 # # 游戏结束，显示结果
-# result = game_end()
+# result = game.result()
 # show_game_result(result)

@@ -32,13 +32,17 @@ class Game:
 
     # 获得所有角色
     def players(self, id_type):
+        if id_type == 'other':
+            return [p for p in self._players if p.type != 'king']
         return [p for p in self._players if p.type == id_type]
 
     # 选将
-    def make_roles(self, id_type):
-        if id_type == 'king':
-            return [Role('sunquan') for i in range(5)]
-        return [Role('guanyu') for i in range(3)]
+    def make_roles(self, player):
+        if player.type == 'king':
+            player.available_roles = [Role('sunquan') for i in range(5)]
+        else:
+            player.available_roles = [Role('guanyu') for i in range(3)]
+        return player.available_roles
 
     
     def start(self):
@@ -50,13 +54,15 @@ class Game:
     def current_player(self):
         return self.current_player
 
+    # 返回游戏结果 胜利方
+    def result():
+        pass
+
 def game_play():
     while true:
         for player in player_list:
             player.action()
 
-def game_end():
-    return get_win()
 
 class Player:
     """docstring for Player"""
@@ -64,6 +70,8 @@ class Player:
         self.index = index
     def action(self):
         pass
+    def select_role(self, index):
+        self.role = self.available_roles[index]
 
 class Role:
     """docstring for Role"""
